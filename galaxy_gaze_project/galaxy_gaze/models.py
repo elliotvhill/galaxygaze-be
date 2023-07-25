@@ -1,6 +1,7 @@
 from django.db import models
 
 class CelestialBody(models.Model):
+    id = models.IntegerField()
     name = models.CharField()
     distanceFromEarth = models.BigIntegerField(blank=True) # allowing field to be blank while in dev
     horizontal_pos = models.CharField(blank=True) # allowing field to be blank while in dev
@@ -10,3 +11,12 @@ class CelestialBody(models.Model):
 
     def __str__(self):
         return self.name
+    
+class CosmicEvent(models.Model):
+    id = models.IntegerField()
+    event_name = models.CharField()
+    event_date = models.CharField()
+    event_description = models.TextField()
+
+    def __str__(self):
+        return self.event_name
