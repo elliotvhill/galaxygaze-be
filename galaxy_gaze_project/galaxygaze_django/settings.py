@@ -13,14 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import psycopg2
 from pathlib import Path
-# from dotenv import load_dotenv #### <--- moving block to models.py where requests will be made & data stored
-# # Load environment variables from .env file
-# load_dotenv()
-# DEBUG = os.getenv('DEBUG', False)
-# DJANGO_WEATHER_API_KEY = os.getenv('DJANGO_WEATHER_API_KEY')
-# DJANGO_ASTRO_APP_ID = os.getenv('DJANGO_ASTRO_APP_ID')
-# DJANGO_ASTRO_APP_SECRET = os.getenv('DJANGO_ASTRO_APP_SECRET')
-# # DATABASE_URL = os.getenv('DATABASE_URL')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,7 +47,15 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '200/day',
+        'user': '100/hour'
+    }
 }
 
 MIDDLEWARE = [
