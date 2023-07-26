@@ -21,6 +21,5 @@ from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('galaxy_gaze.urls')),
-    path('bodies/<int:id>', views.body_detail, name="body_detail")
     path('api-auth', include('rest_framework.urls', namespace='rest_framework'))
 ]

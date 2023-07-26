@@ -10,7 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
+DEBUG = os.getenv('DEBUG', False)
+DJANGO_WEATHER_API_KEY = os.getenv('DJANGO_WEATHER_API_KEY')
+DJANGO_ASTRO_APP_ID = os.getenv('DJANGO_ASTRO_APP_ID')
+DJANGO_ASTRO_APP_SECRET = os.getenv('DJANGO_ASTRO_APP_SECRET')
+# DATABASE_URL = os.getenv('DATABASE_URL')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'galaxy_gaze',
-    'rest_framework'
+    'rest_framework',
 ]
 
 REST_FRAMEWORK = {
