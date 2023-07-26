@@ -15,6 +15,7 @@ class CosmicEventSerializer(serializers.HyperlinkedModelSerializer):
     celestial_body = serializers.HyperlinkedRelatedField(
         view_name='body_detail',
         many=True,
+        queryset=CelestialBody.objects.all()
     )
     class Meta:
         model = CosmicEvent
