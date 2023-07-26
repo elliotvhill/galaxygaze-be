@@ -7,6 +7,6 @@ urlpatterns = [
     path('bodies/<int:id>', views.BodyDetail.as_view(), name="body_detail"),
     path('events/', views.EventsList.as_view(), name='events_list'),
     path('events/<int:pk>', views.EventDetail.as_view(), name='event_detail'),
-    # path('users/', views.users_list, name='users_list'),
-    # path('users/<int:pk>', views.user_detail, name='user_detail'),
+    path('users/', views.UsersList.as_view(), name='users_list'),
+    path('users/<int:pk>', views.UserDetail.as_view(), name='user_detail'),
 ]

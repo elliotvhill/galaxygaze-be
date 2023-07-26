@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CelestialBody, CosmicEvent
+from .models import CelestialBody, CosmicEvent, User
 
 class CelestialBodySerializer(serializers.HyperlinkedModelSerializer):
     cosmic_events = serializers.HyperlinkedRelatedField(
@@ -11,6 +11,7 @@ class CelestialBodySerializer(serializers.HyperlinkedModelSerializer):
         model = CelestialBody
         fields = ('id', 'name', 'distanceFromEarth', 'horizontal_pos', 'horizon_pos', 'equatorial_pos', 'extra_info')
 
+
 class CosmicEventSerializer(serializers.HyperlinkedModelSerializer):
     celestial_body = serializers.HyperlinkedRelatedField(
         view_name='body_detail',
@@ -20,3 +21,12 @@ class CosmicEventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CosmicEvent
         fields = ('id', 'event_name', 'event_date', 'event_description')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    followed_bodies = CelestialBodySerializer(many=True, read_only=True)
+    followed_events = CosmicEventSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'user_email', 'followed_bodies', 'followed_events')

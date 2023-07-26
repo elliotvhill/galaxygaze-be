@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import CelestialBody, CosmicEvent
-from .serializers import CelestialBodySerializer, CosmicEventSerializer
+from .models import CelestialBody, CosmicEvent, User
+from .serializers import CelestialBodySerializer, CosmicEventSerializer, UserSerializer
 
 # bodies list
 class BodiesList(generics.ListCreateAPIView):
@@ -28,5 +28,13 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     read_only=True
 
 # users list
+class UsersList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    read_only=True
 
 # user detail
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    read_only=True

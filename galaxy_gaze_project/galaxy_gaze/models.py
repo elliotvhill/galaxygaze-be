@@ -1,13 +1,14 @@
 from django.db import models
 
 class User(models.Model):
-    username = models.CharField()
-    email = models.CharField()
-    password = models.CharField()
+    username = models.CharField(max_length=100, default='exampleUser')
+    user_email = models.CharField(max_length=100, default='example@example.com')
+    user_password = models.CharField(max_length=30, default='password')
+    followed_bodies = models.ManyToManyField('CelestialBody', blank=True)
+    followed_events = models.ManyToManyField('CosmicEvent', blank=True)
 
     def __str__(self):
         return self.username
-
 
 class CelestialBody(models.Model):
     name = models.CharField()
