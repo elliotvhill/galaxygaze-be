@@ -10,7 +10,8 @@ DJANGO_WEATHER_API_KEY = os.getenv('DJANGO_WEATHER_API_KEY')
 DJANGO_ASTRO_DATABASE_URL = os.getenv('DJANGO_ASTRO_DATABASE_URL')
 DJANGO_ASTRO_APP_ID = os.getenv('DJANGO_ASTRO_APP_ID')
 DJANGO_ASTRO_APP_SECRET = os.getenv('DJANGO_ASTRO_APP_SECRET')
-AUTH_STRING = f"({DJANGO_ASTRO_APP_ID}:{DJANGO_ASTRO_APP_SECRET})"
+ASTRO_DEMO_AUTH_STR = os.getenv('ASTRO_DEMO_AUTH_STR')
+# AUTH_STRING = f"({DJANGO_ASTRO_APP_ID}:{DJANGO_ASTRO_APP_SECRET})"
 
 
 # API REQUESTS:
@@ -21,9 +22,15 @@ def get_astro_bodies(latitude, longitude, from_date, to_date, time, page_size=10
     total_pages = None
     while page <= max_pages:
         params = {
-            'page': page, 'page_size': page_size
+            'latitude': latitude,
+            'longitude': longitude,
+            'from_date': from_date,
+            'to_date': to_date,
+            'time': time,
+            'page': page,
+            'page_size': page_size,
             }
-        response = requests.get(url, params=params, headers={'Authorization': f"Basic {AUTH_STRING}"})
+        response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
         if response.status_code == 200:
             astro_bodies = response.json()
             print(astro_bodies)
@@ -60,10 +67,17 @@ def get_astro_bodies(latitude, longitude, from_date, to_date, time, page_size=10
 def clear_data():
      CelestialBody.objects.all().delete()
 
+# hardcoding user spacetime data for testing:
+latitude = '40.7128'
+longitude = '-74.0060'
+from_date = '2023-07-24'
+to_date = '2023-07-24'
+time = '12:00:00'
+
 # command class to extend BaseCommand and call functions
 class Command(BaseCommand):
 
      def handle(self, *args, **options):
-          get_astro_bodies()
+          get_astro_bodies(latitude, longitude, from_date, to_date, time)
           clear_data()
           print("completed")
