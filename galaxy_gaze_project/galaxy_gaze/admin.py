@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import CelestialBody, CosmicEvent
 
-# Register your models here.
+admin.site.register(CelestialBody)
+admin.site.register(CosmicEvent)
