@@ -18,20 +18,20 @@ ASTRO_DEEP_SPACE_URL = os.getenv('ASTRO_DEEP_SPACE_URL')
 # API REQUESTS:
 
 # request for specific deep space object:
-def search_deep_space(term, match_type, limit, offset):
-     url = ASTRO_DEEP_SPACE_URL
-     params = {
-          'term': term,
-          'match_type': match_type,
-          'limit': limit,
-          'offset': offset
-     }
-     response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
-     if response.status_code == 200:
-          object = response.json()
-          print(object)
-        #   return object
-          if object['data']:
+def search_deep_space(command_instance, term, match_type, limit, offset):
+    url = ASTRO_DEEP_SPACE_URL
+    params = {
+        'term': term,
+        'match_type': match_type,
+        'limit': limit,
+        'offset': offset
+    }
+    response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
+    if response.status_code == 200:
+        object = response.json()
+        # print(object)
+        # return object
+        if object['data']:
             api_object_data = object['data'][0]
 
             # get name of object
@@ -55,10 +55,11 @@ def search_deep_space(term, match_type, limit, offset):
                 object_position = f"Right ascension: {object_ra}, Declination: {object_dec}"
             )
             deep_space_object.save()
-          else:
+            pass
+        else:
             print('No data found')
-     else:
-         print('API request failed')
+    else:
+        print('API request failed')
 
 
 # request for body positions based on location:
@@ -112,26 +113,32 @@ def search_deep_space(term, match_type, limit, offset):
 # clear data to prevent duplicates if need to re-seed
 def clear_data():
     #  CelestialBody.objects.all().delete()
-     DeepSpaceObject.objects.all().delete()
+    DeepSpaceObject.objects.all().delete()
 
 # hardcoding user spacetime data for testing:
-latitude = '40.7128'
-longitude = '-74.0060'
-from_date = '2023-07-24'
-to_date = '2023-07-24'
-time = '12:00:00'
+# latitude = '40.7128'
+# longitude = '-74.0060'
+# from_date = '2023-07-24'
+# to_date = '2023-07-24'
+# time = '12:00:00'
 
 # hard coding deep space search params for testing:
-term = 'Andromeda'
-match_type = 'fuzzy'
-limit = '10'
-offset = '0'
+# term = 'Andromeda'
+# match_type = 'fuzzy'
+# limit = '10'
+# offset = '0'
 
 # command class to extend BaseCommand and call functions
 class Command(BaseCommand):
+     def add_arguments(self, parser):
+        parser.add_argument('term', type=str, help='Search term for deep space objects')
 
      def handle(self, *args, **options):
         # get_astro_bodies(latitude, longitude, from_date, to_date, time)
-        search_deep_space(term, match_type, limit, offset)
+        term = options['term']
+        match_type = 'fuzzy'
+        limit = '10'
+        offset = '0'
+        search_deep_space(self, term, match_type, limit, offset)
         # clear_data()
-        print("completed")
+        print(f"Data seeding for term {term} completed")
