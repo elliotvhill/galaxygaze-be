@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .models import CelestialBody, CosmicEvent, User, DeepSpaceObject
-from .serializers import CelestialBodySerializer, CosmicEventSerializer, UserSerializer
+from .serializers import CelestialBodySerializer, CosmicEventSerializer, UserSerializer, DeepSpaceObjectSerializer
 
 # bodies list
 class BodiesList(generics.ListCreateAPIView):
@@ -40,7 +40,13 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     read_only=True
 
 # deep space object list
+class DeepSpaceObjectList(generics.ListCreateAPIView):
+    queryset = DeepSpaceObject.objects.all()
+    serializer_class = DeepSpaceObjectSerializer
+    read_only=True
 
 # deep space object detail
-# class DeepSpaceObjectDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = 
+class DeepSpaceObjectDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DeepSpaceObject.objects.all()
+    serializer_class = DeepSpaceObjectSerializer
+    read_only=True

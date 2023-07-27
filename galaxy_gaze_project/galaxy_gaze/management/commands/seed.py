@@ -34,11 +34,16 @@ def search_deep_space(term, match_type, limit, offset):
           if object['data']:
             api_object_data = object['data'][0]
 
-            object_name = api_object_data['name'] # object name
-            object_type = api_object_data['type']['name'] # get name of object type, e.g. 'galaxy'
-            object_sub_type = api_object_data['subType']['name'] # name of subType e,g. 'spiral'
-            object_ra = api_object_data['position']['equatorial']['rightAscension']['string'] # access the string version of the position's right ascension
-            object_dec = api_object_data['position']['equatorial']['declination']['string'] # access the string version of the position's declination
+            # get name of object
+            object_name = api_object_data['name']
+            # get name of object type, e.g. 'galaxy'
+            object_type = api_object_data['type']['name']
+            # name of subType e,g. 'spiral'
+            object_sub_type = api_object_data['subType']['name']
+            # access the string version of the position's right ascension
+            object_ra = api_object_data['position']['equatorial']['rightAscension']['string']
+            # access the string version of the position's declination
+            object_dec = api_object_data['position']['equatorial']['declination']['string']
 
             # return object_name, object_type, object_sub_type, object_ra, object_dec
 
