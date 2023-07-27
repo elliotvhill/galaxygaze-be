@@ -31,4 +31,10 @@ class CosmicEvent(models.Model):
     def __str__(self):
         return self.event_name
 
+class DeepSpaceObject(models.Model):
+    object_name = models.CharField()
+    object_type = models.CharField()
+    object_position = models.CharField()
 
+    def __str__(self):
+        return self.object_name

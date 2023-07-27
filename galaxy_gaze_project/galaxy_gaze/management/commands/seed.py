@@ -79,5 +79,5 @@ class Command(BaseCommand):
 
      def handle(self, *args, **options):
           get_astro_bodies(latitude, longitude, from_date, to_date, time)
-          clear_data()
+        #   clear_data()
           print("completed")
