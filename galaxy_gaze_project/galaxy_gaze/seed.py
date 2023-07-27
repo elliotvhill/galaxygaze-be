@@ -26,11 +26,12 @@ def search_deep_space(command_instance, term, match_type, limit, offset):
         'limit': limit,
         'offset': offset
     }
+    search_results = []
+
     response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
     if response.status_code == 200:
         object = response.json()
         # print(object)
-        # return object
         if object['data']:
             api_object_data = object['data'][0]
 
@@ -45,8 +46,6 @@ def search_deep_space(command_instance, term, match_type, limit, offset):
             # access the string version of the position's declination
             object_dec = api_object_data['position']['equatorial']['declination']['string']
 
-            # return object_name, object_type, object_sub_type, object_ra, object_dec
-
             # create and save new instance of deep space object:
             deep_space_object = DeepSpaceObject(
                 object_name = object_name,
@@ -55,7 +54,17 @@ def search_deep_space(command_instance, term, match_type, limit, offset):
                 object_position = f"Right ascension: {object_ra}, Declination: {object_dec}"
             )
             deep_space_object.save()
+
+            # Append the result to the search_results list
+            result = {
+                'object_name': object_name,
+                'object_type': object_type,
+                'object_sub_type': object_sub_type,
+                'object_position': f"Right ascension: {object_ra}, Declination: {object_dec}"
+            }
+            search_results.append(result)
             pass
+        
         else:
             print('No data found')
     else:

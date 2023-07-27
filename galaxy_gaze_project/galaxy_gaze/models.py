@@ -24,18 +24,18 @@ class CelestialBody(models.Model):
         return self.name
     
 class CosmicEvent(models.Model):
-    event_name = models.CharField()
-    event_date = models.CharField()
-    event_description = models.TextField()
+    event_name = models.CharField(blank=True)
+    event_date = models.CharField(blank=True)
+    event_description = models.TextField(blank=True)
 
     def __str__(self):
         return self.event_name
 
 class DeepSpaceObject(models.Model):
-    object_name = models.CharField()
-    object_type = models.CharField()
-    object_sub_type = models.CharField()
-    object_position = models.CharField()
+    object_name = models.CharField(blank=True)
+    object_type = models.CharField(blank=True)
+    object_sub_type = models.CharField(blank=True)
+    object_position = models.CharField(blank=True)
 
     def __str__(self):
         return self.object_name

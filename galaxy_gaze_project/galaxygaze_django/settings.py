@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'galaxy_gaze',
     'rest_framework',
     'corsheaders',
+    # 'management.commands'
 ]
 
 REST_FRAMEWORK = {
@@ -69,12 +70,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [ # <-- will need to add frontend URL once react app deployed
-    "https://example.com",
-    "https://sub.example.com",
-    "http://localhost:5173",
-    "http://127.0.0.1:5555",
-]
+CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOWED_ORIGINS = [ # <-- will need to add frontend URL once react app deployed
+#     "https://example.com",
+#     "https://sub.example.com",
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5555",
+# ]
 
 ROOT_URLCONF = 'galaxygaze_django.urls'
 
