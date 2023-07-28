@@ -18,7 +18,7 @@ AUTH_STRING = f"{DJANGO_ASTRO_APP_ID}:{DJANGO_ASTRO_APP_SECRET}"
 # API REQUESTS:
 
 # request for specific deep space object:
-def deepspace(command_instance, term, match_type, limit, offset):
+def deepspaceobject(command_instance, term, match_type, limit, offset):
     url = ASTRO_DEEP_SPACE_URL
     params = {
         'term': term,
@@ -29,7 +29,7 @@ def deepspace(command_instance, term, match_type, limit, offset):
     search_results = []
 
     # response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
-    response = requests.get(url, params=params, headers={'Authorization': f"Basic {AUTH_STRING}"})
+    response = requests.get(url, params=params, headers={'Authorization': f"Basic {AUTH_STRING}", 'Origin': "http://localhost:5173/"})
     if response.status_code == 200:
         object = response.json()
         # print(object)
@@ -146,6 +146,6 @@ class Command(BaseCommand):
         match_type = 'fuzzy'
         limit = '10'
         offset = '0'
-        deepspace(self, term, match_type, limit, offset)
+        deepspaceobject(self, term, match_type, limit, offset)
         clear_data()
         print(f"Data seeding for term {term} completed")

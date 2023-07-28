@@ -9,7 +9,7 @@ urlpatterns = [
     path('events/<int:pk>', views.EventDetail.as_view(), name='event_detail'),
     path('users/', views.UsersList.as_view(), name='users_list'),
     path('users/<int:pk>', views.UserDetail.as_view(), name='user_detail'),
-    path('deepspace/', views.DeepSpaceObjectList.as_view(), name='deep_space_list'),
-    path('deepspace/<int:pk>', views.DeepSpaceObjectDetail.as_view(), name='deep_space_detail'),
+    path('deepspaceobject/', views.DeepSpaceObjectList.as_view(), name='deep_space_list'),
+    path('deepspaceobject/<int:pk>', views.DeepSpaceObjectDetail.as_view(), name='deep_space_detail'),
     # path('search-deep-space/<int:pk>', views.search_deep_space_view, name='deep_space_search') # path to view search request
 ]

@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
-from .seed import deepspace
+from .seed import deepspaceobject
 from django.shortcuts import render
 from rest_framework import generics
 from .models import CelestialBody, CosmicEvent, User, DeepSpaceObject
@@ -56,13 +56,13 @@ class DeepSpaceObjectDetail(generics.RetrieveUpdateDestroyAPIView):
 
 # view deep space search result
 @require_GET
-def deepspace_view(request):
+def deepspaceobject_view(request):
     term = request.GET.get('term', '')
     match_type = 'fuzzy'
     limit = '10'
     offset = '0'
 
-    search_results = deepspace(request, term, match_type, limit, offset)
+    search_results = deepspaceobject(request, term, match_type, limit, offset)
 
-    deepspace(request, term, match_type, limit, offset)
+    deepspaceobject(request, term, match_type, limit, offset)
     return JsonResponse(search_results, safe=False)
