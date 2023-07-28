@@ -10,9 +10,9 @@ DJANGO_WEATHER_API_KEY = os.getenv('DJANGO_WEATHER_API_KEY')
 DJANGO_ASTRO_DATABASE_URL = os.getenv('DJANGO_ASTRO_DATABASE_URL')
 DJANGO_ASTRO_APP_ID = os.getenv('DJANGO_ASTRO_APP_ID')
 DJANGO_ASTRO_APP_SECRET = os.getenv('DJANGO_ASTRO_APP_SECRET')
-ASTRO_DEMO_AUTH_STR = os.getenv('ASTRO_DEMO_AUTH_STR')
+# ASTRO_DEMO_AUTH_STR = os.getenv('ASTRO_DEMO_AUTH_STR')
 ASTRO_DEEP_SPACE_URL = os.getenv('ASTRO_DEEP_SPACE_URL')
-# AUTH_STRING = f"({DJANGO_ASTRO_APP_ID}:{DJANGO_ASTRO_APP_SECRET})"
+AUTH_STRING = f"{DJANGO_ASTRO_APP_ID}:{DJANGO_ASTRO_APP_SECRET}"
 
 
 # API REQUESTS:
@@ -28,22 +28,18 @@ def deepspace(command_instance, term, match_type, limit, offset):
     }
     search_results = []
 
-    response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
+    # response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
+    response = requests.get(url, params=params, headers={'Authorization': f"Basic {AUTH_STRING}"})
     if response.status_code == 200:
         object = response.json()
         # print(object)
         if object['data']:
             api_object_data = object['data'][0]
 
-            # get name of object
             object_name = api_object_data['name']
-            # get name of object type, e.g. 'galaxy'
             object_type = api_object_data['type']['name']
-            # name of subType e,g. 'spiral'
             object_sub_type = api_object_data['subType']['name']
-            # access the string version of the position's right ascension
             object_ra = api_object_data['position']['equatorial']['rightAscension']['string']
-            # access the string version of the position's declination
             object_dec = api_object_data['position']['equatorial']['declination']['string']
 
             # create and save new instance of deep space object:
@@ -51,7 +47,8 @@ def deepspace(command_instance, term, match_type, limit, offset):
                 object_name = object_name,
                 object_type = object_type,
                 object_sub_type = object_sub_type,
-                object_position = f"Right ascension: {object_ra}, Declination: {object_dec}"
+                object_position_ra = object_ra,
+                object_position_dec = object_dec
             )
             deep_space_object.save()
 
@@ -60,7 +57,8 @@ def deepspace(command_instance, term, match_type, limit, offset):
                 'object_name': object_name,
                 'object_type': object_type,
                 'object_sub_type': object_sub_type,
-                'object_position': f"Right ascension: {object_ra}, Declination: {object_dec}"
+                'object_position_ra': object_ra,
+                'object_position_dec': object_dec
             }
             search_results.append(result)
             pass

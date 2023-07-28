@@ -1,7 +1,5 @@
 from django.db import models
 
-# MODEL DEFINITIONS:
-
 class User(models.Model):
     username = models.CharField(max_length=100, default='exampleUser')
     user_email = models.CharField(max_length=100, default='example@example.com')
@@ -35,7 +33,8 @@ class DeepSpaceObject(models.Model):
     object_name = models.CharField(blank=True)
     object_type = models.CharField(blank=True)
     object_sub_type = models.CharField(blank=True)
-    object_position = models.CharField(blank=True)
+    object_position_ra = models.CharField(blank=True)
+    object_position_dec = models.CharField(blank=True)
 
     def __str__(self):
         return self.object_name
