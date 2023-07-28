@@ -42,21 +42,12 @@ INSTALLED_APPS = [
     'galaxy_gaze',
     'rest_framework',
     'corsheaders',
-    # 'management.commands'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '200/day',
-        'user': '100/hour'
-    }
 }
 
 MIDDLEWARE = [
@@ -73,11 +64,10 @@ MIDDLEWARE = [
 # CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [ # <-- will need to add frontend URL once react app deployed
-    "https://chimerical-liger-e01200.netlify.app",
-    "https://example.com",
-    "https://sub.example.com",
+    "https://galaxygaze.netlify.app",
     "http://localhost:5173",
     "http://127.0.0.1:5555",
+    "http://127.0.0.1:8000",
 ]
 
 ROOT_URLCONF = 'galaxygaze_django.urls'
