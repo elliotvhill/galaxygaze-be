@@ -18,7 +18,7 @@ ASTRO_DEEP_SPACE_URL = os.getenv('ASTRO_DEEP_SPACE_URL')
 # API REQUESTS:
 
 # request for specific deep space object:
-def search_deep_space(command_instance, term, match_type, limit, offset):
+def deepspace(command_instance, term, match_type, limit, offset):
     url = ASTRO_DEEP_SPACE_URL
     params = {
         'term': term,
@@ -148,6 +148,6 @@ class Command(BaseCommand):
         match_type = 'fuzzy'
         limit = '10'
         offset = '0'
-        search_deep_space(self, term, match_type, limit, offset)
-        # clear_data()
+        deepspace(self, term, match_type, limit, offset)
+        clear_data()
         print(f"Data seeding for term {term} completed")
