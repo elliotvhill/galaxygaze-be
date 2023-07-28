@@ -10,7 +10,7 @@ DJANGO_WEATHER_API_KEY = os.getenv('DJANGO_WEATHER_API_KEY')
 DJANGO_ASTRO_DATABASE_URL = os.getenv('DJANGO_ASTRO_DATABASE_URL')
 DJANGO_ASTRO_APP_ID = os.getenv('DJANGO_ASTRO_APP_ID')
 DJANGO_ASTRO_APP_SECRET = os.getenv('DJANGO_ASTRO_APP_SECRET')
-# ASTRO_DEMO_AUTH_STR = os.getenv('ASTRO_DEMO_AUTH_STR')
+ASTRO_DEMO_AUTH_STR = os.getenv('ASTRO_DEMO_AUTH_STR')
 ASTRO_DEEP_SPACE_URL = os.getenv('ASTRO_DEEP_SPACE_URL')
 AUTH_STRING = f"{DJANGO_ASTRO_APP_ID}:{DJANGO_ASTRO_APP_SECRET}"
 
@@ -28,8 +28,8 @@ def deepspaceobject(command_instance, term, match_type, limit, offset):
     }
     search_results = []
 
-    # response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}"})
-    response = requests.get(url, params=params, headers={'Authorization': f"Basic {AUTH_STRING}", 'Origin': "http://localhost:5173/"})
+    # response = requests.get(url, params=params, headers={'Authorization': f"Basic {ASTRO_DEMO_AUTH_STR}", 'Origin': "https://chimerical-liger-e01200.netlify.app/"})
+    response = requests.get(url, params=params, headers={'Authorization': f"Basic {AUTH_STRING}", 'Origin': "https://chimerical-liger-e01200.netlify.app/"})
     if response.status_code == 200:
         object = response.json()
         # print(object)
@@ -128,12 +128,6 @@ def clear_data():
 # from_date = '2023-07-24'
 # to_date = '2023-07-24'
 # time = '12:00:00'
-
-# hard coding deep space search params for testing:
-# term = 'Andromeda'
-# match_type = 'fuzzy'
-# limit = '10'
-# offset = '0'
 
 # command class to extend BaseCommand and call functions
 class Command(BaseCommand):

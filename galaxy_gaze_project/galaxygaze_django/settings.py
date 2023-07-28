@@ -73,6 +73,7 @@ MIDDLEWARE = [
 # CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [ # <-- will need to add frontend URL once react app deployed
+    "https://chimerical-liger-e01200.netlify.app",
     "https://example.com",
     "https://sub.example.com",
     "http://localhost:5173",
