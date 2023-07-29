@@ -19,8 +19,9 @@ AUTH_STRING = f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"
 
 # request for specific deep space object:
 def deepspaceobject(command_instance, term, match_type, limit, offset):
-    headers = { 'Authorization': f"Basic {AUTH_STRING}", 'Access-Control-Allow-Origin': "https://galaxygaze.netlify.app" }
+    # headers = { 'Authorization': f"Basic {AUTH_STRING}", 'Access-Control-Allow-Origin': "https://galaxygaze.netlify.app" }
     # headers = { 'Authorization': f"Basic {DJANGO_ASTRO_DEMO_AUTH_STR}", 'Access-Control-Allow-Origin': "http://localhost:5173" }
+    headers = { 'Authorization': f"Basic {DJANGO_ASTRO_DEMO_AUTH_STR}" }
     url = DJANGO_ASTRO_DEEP_SPACE_URL
     params = {
         'term': term,
@@ -58,8 +59,8 @@ def deepspaceobject(command_instance, term, match_type, limit, offset):
                 'object_name': object_name,
                 'object_type': object_type,
                 'object_sub_type': object_sub_type,
-                'object_position_ra': object_ra,
-                'object_position_dec': object_dec
+                'object_position_ra': object_position_ra,
+                'object_position_dec': object_position_dec
             }
             search_results.append(result)
             pass
