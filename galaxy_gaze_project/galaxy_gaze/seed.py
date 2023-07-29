@@ -12,7 +12,6 @@ NETLIFY_ASTRO_APP_ID = os.getenv('NETLIFY_ASTRO_APP_ID')
 NETLIFY_ASTRO_APP_SECRET = os.getenv('NETLIFY_ASTRO_APP_SECRET')
 DJANGO_ASTRO_DEMO_AUTH_STR = os.getenv('DJANGO_ASTRO_DEMO_AUTH_STR')
 DJANGO_ASTRO_DEEP_SPACE_URL = os.getenv('DJANGO_ASTRO_DEEP_SPACE_URL')
-# AUTH_STRING = 'Basic f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"'
 AUTH_STRING = f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"
 
 
@@ -20,7 +19,7 @@ AUTH_STRING = f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"
 
 # request for specific deep space object:
 def deepspaceobject(command_instance, term, match_type, limit, offset):
-    headers = { 'Authorization': f"Basic {AUTH_STRING}" }
+    headers = { 'Authorization': f"Basic {DJANGO_ASTRO_DEMO_AUTH_STR}", 'Access-Control-Allow-Origin': "http://localhost:5173" }
     url = DJANGO_ASTRO_DEEP_SPACE_URL
     params = {
         'term': term,
