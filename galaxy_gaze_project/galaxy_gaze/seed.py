@@ -41,16 +41,16 @@ def deepspaceobject(command_instance, term, match_type, limit, offset):
             object_name = api_object_data['name']
             object_type = api_object_data['type']['name']
             object_sub_type = api_object_data['subType']['name']
-            object_ra = api_object_data['position']['equatorial']['rightAscension']['string']
-            object_dec = api_object_data['position']['equatorial']['declination']['string']
+            object_position_ra = api_object_data['position']['equatorial']['rightAscension']['string']
+            object_position_dec = api_object_data['position']['equatorial']['declination']['string']
 
             # create and save new instance of deep space object:
             deepspaceobject = DeepSpaceObject(
                 object_name = object_name,
                 object_type = object_type,
                 object_sub_type = object_sub_type,
-                object_position_ra = object_ra,
-                object_position_dec = object_dec
+                object_position_ra = object_position_ra,
+                object_position_dec = object_position_dec
             )
             deepspaceobject.save()
 
