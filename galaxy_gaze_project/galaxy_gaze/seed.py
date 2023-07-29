@@ -12,7 +12,6 @@ NETLIFY_ASTRO_APP_ID = os.getenv('NETLIFY_ASTRO_APP_ID')
 NETLIFY_ASTRO_APP_SECRET = os.getenv('NETLIFY_ASTRO_APP_SECRET')
 DJANGO_ASTRO_DEMO_AUTH_STR = os.getenv('DJANGO_ASTRO_DEMO_AUTH_STR')
 DJANGO_ASTRO_DEEP_SPACE_URL = os.getenv('DJANGO_ASTRO_DEEP_SPACE_URL')
-# AUTH_STRING = 'Basic f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"'
 AUTH_STRING = f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"
 
 
@@ -20,7 +19,8 @@ AUTH_STRING = f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"
 
 # request for specific deep space object:
 def deepspaceobject(command_instance, term, match_type, limit, offset):
-    headers = { 'Authorization': f"Basic {AUTH_STRING}" }
+    headers = { 'Authorization': f"Basic {AUTH_STRING}", 'Access-Control-Allow-Origin': "https://galaxygaze.netlify.app" }
+    # headers = { 'Authorization': f"Basic {DJANGO_ASTRO_DEMO_AUTH_STR}", 'Access-Control-Allow-Origin': "http://localhost:5173" }
     url = DJANGO_ASTRO_DEEP_SPACE_URL
     params = {
         'term': term,
@@ -30,7 +30,6 @@ def deepspaceobject(command_instance, term, match_type, limit, offset):
     }
     search_results = []
 
-    # response = requests.get(url, params=params, headers={'Authorization': f"Basic {DJANGO_ASTRO_DEMO_AUTH_STR}", 'Access-Control-Allow-Origin': "https://galaxygaze.netlify.app/"})
     response = requests.get(url, params=params, headers=headers)
     if response.status_code == 200:
         object = response.json()
@@ -41,16 +40,16 @@ def deepspaceobject(command_instance, term, match_type, limit, offset):
             object_name = api_object_data['name']
             object_type = api_object_data['type']['name']
             object_sub_type = api_object_data['subType']['name']
-            object_ra = api_object_data['position']['equatorial']['rightAscension']['string']
-            object_dec = api_object_data['position']['equatorial']['declination']['string']
+            object_position_ra = api_object_data['position']['equatorial']['rightAscension']['string']
+            object_position_dec = api_object_data['position']['equatorial']['declination']['string']
 
             # create and save new instance of deep space object:
             deepspaceobject = DeepSpaceObject(
                 object_name = object_name,
                 object_type = object_type,
                 object_sub_type = object_sub_type,
-                object_position_ra = object_ra,
-                object_position_dec = object_dec
+                object_position_ra = object_position_ra,
+                object_position_dec = object_position_dec
             )
             deepspaceobject.save()
 
