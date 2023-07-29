@@ -33,12 +33,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class DeepSpaceObjectSerializer(serializers.HyperlinkedModelSerializer):
-    space_object = serializers.HyperlinkedRelatedField(
-        view_name='deep_space_detail',
-        many=True,
-        read_only=True
-    )
-
     class Meta:
         model = DeepSpaceObject
-        fields = ('id', 'space_object', 'object_name', 'object_type', 'object_sub_type', 'object_position_ra', 'object_position_dec')
+        fields = ('id', 'object_name', 'object_type', 'object_sub_type', 'object_position_ra', 'object_position_dec')

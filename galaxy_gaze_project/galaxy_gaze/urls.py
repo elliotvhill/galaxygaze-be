@@ -11,5 +11,4 @@ urlpatterns = [
     path('users/<int:pk>', views.UserDetail.as_view(), name='user_detail'),
     path('deepspaceobject/', views.DeepSpaceObjectList.as_view(), name='deep_space_list'),
     path('deepspaceobject/<int:pk>', views.DeepSpaceObjectDetail.as_view(), name='deep_space_detail'),
-    # path('search-deep-space/<int:pk>', views.search_deep_space_view, name='deep_space_search') # path to view search request
 ]

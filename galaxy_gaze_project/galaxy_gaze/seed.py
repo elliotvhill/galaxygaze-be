@@ -5,7 +5,7 @@ from galaxy_gaze.models import CelestialBody, DeepSpaceObject
 import os
 from dotenv import load_dotenv
 load_dotenv()
-DEBUG = os.getenv('DEBUG', False)
+# DEBUG = os.getenv('DEBUG', False)
 DJANGO_WEATHER_API_KEY = os.getenv('DJANGO_WEATHER_API_KEY')
 DJANGO_ASTRO_DATABASE_URL = os.getenv('DJANGO_ASTRO_DATABASE_URL')
 NETLIFY_ASTRO_APP_ID = os.getenv('NETLIFY_ASTRO_APP_ID')
@@ -20,6 +20,7 @@ AUTH_STRING = f"{NETLIFY_ASTRO_APP_ID}:{NETLIFY_ASTRO_APP_SECRET}"
 
 # request for specific deep space object:
 def deepspaceobject(command_instance, term, match_type, limit, offset):
+    headers = { 'Authorization': f"Basic {AUTH_STRING}" }
     url = DJANGO_ASTRO_DEEP_SPACE_URL
     params = {
         'term': term,
@@ -30,10 +31,10 @@ def deepspaceobject(command_instance, term, match_type, limit, offset):
     search_results = []
 
     # response = requests.get(url, params=params, headers={'Authorization': f"Basic {DJANGO_ASTRO_DEMO_AUTH_STR}", 'Access-Control-Allow-Origin': "https://galaxygaze.netlify.app/"})
-    response = requests.get(url, params=params, headers={'Authorization': f"Basic {AUTH_STRING}", 'Access-Control-Allow-Origin': "*", "X-Requested-With": "XMLHttpRequest"})
+    response = requests.get(url, params=params, headers=headers)
     if response.status_code == 200:
         object = response.json()
-        # print(object)
+        print(object)
         if object['data']:
             api_object_data = object['data'][0]
 
@@ -44,14 +45,14 @@ def deepspaceobject(command_instance, term, match_type, limit, offset):
             object_dec = api_object_data['position']['equatorial']['declination']['string']
 
             # create and save new instance of deep space object:
-            deep_space_object = DeepSpaceObject(
+            deepspaceobject = DeepSpaceObject(
                 object_name = object_name,
                 object_type = object_type,
                 object_sub_type = object_sub_type,
                 object_position_ra = object_ra,
                 object_position_dec = object_dec
             )
-            deep_space_object.save()
+            deepspaceobject.save()
 
             # Append the result to the search_results list
             result = {
@@ -86,5 +87,5 @@ class Command(BaseCommand):
         limit = '10'
         offset = '0'
         deepspaceobject(self, term, match_type, limit, offset)
-        clear_data()
+        # clear_data()
         print(f"Data seeding for term {term} completed")
