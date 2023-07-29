@@ -1,7 +1,10 @@
+from django.http import JsonResponse
+from django.views.decorators.http import require_GET
+from .seed import deepspaceobject
 from django.shortcuts import render
 from rest_framework import generics
-from .models import CelestialBody, CosmicEvent, User
-from .serializers import CelestialBodySerializer, CosmicEventSerializer, UserSerializer
+from .models import CelestialBody, CosmicEvent, User, DeepSpaceObject
+from .serializers import CelestialBodySerializer, CosmicEventSerializer, UserSerializer, DeepSpaceObjectSerializer
 
 # bodies list
 class BodiesList(generics.ListCreateAPIView):
@@ -38,3 +41,28 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     read_only=True
+
+# deep space object list
+class DeepSpaceObjectList(generics.ListCreateAPIView):
+    queryset = DeepSpaceObject.objects.all()
+    serializer_class = DeepSpaceObjectSerializer
+    read_only=True
+
+# deep space object detail
+class DeepSpaceObjectDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DeepSpaceObject.objects.all()
+    serializer_class = DeepSpaceObjectSerializer
+    read_only=True
+
+# view deep space search result
+@require_GET
+def deepspaceobject_view(request):
+    term = request.GET.get('term', '')
+    match_type = 'fuzzy'
+    limit = '10'
+    offset = '0'
+
+    search_results = deepspaceobject(request, term, match_type, limit, offset)
+
+    deepspaceobject(request, term, match_type, limit, offset)
+    return JsonResponse(search_results, safe=False)
