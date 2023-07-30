@@ -61,14 +61,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOWED_ORIGINS = [
-    "https://galaxygaze.netlify.app",
-    "http://localhost:5173",
-    "http://127.0.0.1:5555",
-    "http://127.0.0.1:8000",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://galaxygaze.netlify.app",
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5555",
+#     "http://127.0.0.1:8000",
+# ]
 
 ROOT_URLCONF = 'galaxygaze_django.urls'
 

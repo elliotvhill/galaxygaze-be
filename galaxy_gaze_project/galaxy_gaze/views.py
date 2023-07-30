@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
-from .seed import deepspaceobject
-# from django.db.models import Q  # Import the Q object for complex queries
+from .seed import seed_astro_bodies, get_astro_bodies
 from django.shortcuts import render
 from rest_framework import generics
 from .models import CelestialBody, CosmicEvent, User, DeepSpaceObject
@@ -60,14 +59,7 @@ class DeepSpaceObjectDetail(generics.RetrieveUpdateDestroyAPIView):
 def deepspaceobject_view(request):
     try:
         term = request.GET.get('term', '')
-        # below is for searching astro api:
-        # match_type = 'fuzzy'
-        # limit = '10'
-        # offset = '0'
-        # search_results = deepspaceobject(request, term, match_type, limit, offset)
-        # deepspaceobject(request, term, match_type, limit, offset)
-        # return JsonResponse(search_results, safe=False)
-
+        
         # term search, case insensitive:
         search_results = DeepSpaceObject.objects.filter(object_name__icontains=term)
         serializer = DeepSpaceObjectSerializer(search_results, many=True)
