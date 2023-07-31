@@ -46,13 +46,13 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 class DeepSpaceObjectList(generics.ListCreateAPIView):
     queryset = DeepSpaceObject.objects.all()
     serializer_class = DeepSpaceObjectSerializer
-    read_only=True
+    read_only=False
 
 # deep space object detail
 class DeepSpaceObjectDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = DeepSpaceObject.objects.all()
     serializer_class = DeepSpaceObjectSerializer
-    read_only=True
+    read_only=False
 
 # view deep space search result
 @require_GET

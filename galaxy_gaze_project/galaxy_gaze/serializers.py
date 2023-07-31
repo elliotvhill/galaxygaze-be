@@ -29,7 +29,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id', 'username', 'user_email', 'followed_bodies', 'followed_events')
+        fields = ('id', 'username', 'user_email', 'user_password', 'followed_bodies', 'followed_events')
 
 
 class DeepSpaceObjectSerializer(serializers.HyperlinkedModelSerializer):
