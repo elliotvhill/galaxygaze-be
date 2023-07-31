@@ -34,18 +34,13 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
 class UsersList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    read_only=True
+    read_only=False
 
 # user detail
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    read_only=True
-
-# user login view
-# user logout view
-# user session view
-# user whoami view
+    read_only=False
 
 # deep space object list
 class DeepSpaceObjectList(generics.ListCreateAPIView):

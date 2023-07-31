@@ -11,8 +11,8 @@ urlpatterns = [
     path('users/<int:pk>', views.UserDetail.as_view(), name='user_detail'),
     path('deepspaceobject/', views.DeepSpaceObjectList.as_view(), name='deep_space_list'),
     path('deepspaceobject/search/', views.deepspaceobject_view, name='deepspaceobject-search'),
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
-    path('session/', views.session_view, name='session'),
-    path('whoami/', views.whoami_view, name='whoami'),
+    # path('login/', views.login_view, name='login'),
+    # path('logout/', views.logout_view, name='logout'),
+    # path('session/', views.session_view, name='session'),
+    # path('whoami/', views.whoami_view, name='whoami'),
 ]
