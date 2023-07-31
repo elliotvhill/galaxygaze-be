@@ -3,7 +3,7 @@ from django.db import models
 class User(models.Model):
     username = models.CharField(max_length=100)
     user_email = models.CharField(max_length=100, blank=True)
-    user_password = models.CharField(max_length=30, default='password')
+    user_password = models.CharField(max_length=30)
     followed_bodies = models.ManyToManyField('CelestialBody', blank=True)
     followed_events = models.ManyToManyField('CosmicEvent', blank=True)
 
