@@ -42,6 +42,11 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     read_only=True
 
+# user login view
+# user logout view
+# user session view
+# user whoami view
+
 # deep space object list
 class DeepSpaceObjectList(generics.ListCreateAPIView):
     queryset = DeepSpaceObject.objects.all()
