@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
+from django.contrib.auth.decorators import login_required
 from .seed import seed_astro_bodies, get_astro_bodies
 from django.shortcuts import render
 from rest_framework import generics
@@ -66,3 +67,9 @@ def deepspaceobject_view(request):
         return JsonResponse(serializer.data, safe=False)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
+# get logged in user ID
+@login_required
+def get_user_id(request):
+    user_id = request.user.id
+    return JsonResponse({'user_id': user_id})
