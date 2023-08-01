@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'galaxy_gaze',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 ]
 
