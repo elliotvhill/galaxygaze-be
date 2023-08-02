@@ -22,6 +22,7 @@ Users will be able to log in and create a profile, share posts about their obser
 ## Resources consulted
 * [Weather API](https://www.weatherapi.com/)
 * [Astronomy API](https://astronomyapi.com/)
+* [Astronomy API sample code](https://github.com/AstronomyAPI/Samples)
 * [TailwindCSS](https://tailwindcss.com/docs/)
 * [Seeding a Django API with external data](https://medium.com/@chilinski.a/how-to-seed-a-django-api-with-data-from-an-external-api-b577b6e6ad54)
 * [Django REST framework documentation](https://www.django-rest-framework.org/)
