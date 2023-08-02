@@ -31,3 +31,4 @@ Users will be able to log in and create a profile, share posts about their obser
 * [Django Project: models](https://docs.djangoproject.com/en/4.2/topics/db/models/)
 * [MDN: access-control-allow-origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)
 * [freeCodeCamp: State in React with Context & Hooks](https://www.freecodecamp.org/news/state-management-with-react-hooks/)
+* [Rocket illustration by Lukaz Adam](https://lukaszadam.gumroad.com/)
