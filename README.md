@@ -1,5 +1,7 @@
 # GalazyGaze _(front end)_
 
+<img src="/Galaxy-gaze-landing.png" alt="A screenshot of the Galaxy Gaze home page." height=50% width=50% />
+
 ## Description
 An astronomy planning app built using the open [Weather API](https://www.weatherapi.com/) and [Astronomy API](https://astronomyapi.com/). Users will use the app to check stargazing conditions in their area, and can set up to be notified when conditions meet their criteria. They can also learn about and get alerts about astronomical events like full moons, meteor showers, etc.
 
