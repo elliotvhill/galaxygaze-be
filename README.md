@@ -27,7 +27,7 @@ Users will be able to log in and create a profile, share posts about their obser
 * [Seeding a Django API with external data](https://medium.com/@chilinski.a/how-to-seed-a-django-api-with-data-from-an-external-api-b577b6e6ad54)
 * [Django REST framework documentation](https://www.django-rest-framework.org/)
 * [Requests library documentation](https://requests.readthedocs.io/en/latest/user/quickstart/)
-* [Python: dotenv][https://pypi.org/project/python-dotenv/#getting-started]
+* [Python: dotenv](https://pypi.org/project/python-dotenv/#getting-started)
 * [MDN: Django](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site#advanced_configuration)
 * [Django Project: models](https://docs.djangoproject.com/en/4.2/topics/db/models/)
 * [MDN: access-control-allow-origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)
