@@ -9,8 +9,15 @@ Users will be able to log in and create a profile, share posts about their obser
 
 ## Planning
 * [Trello board](https://trello.com/b/MpDEJbwE/ga-capstone)
-* Component hierarchy diagram
-* Entity relationship diagram
+* Component hierarchy diagram:
+
+<img src="/galaxy-gaze-chd.png" alt="A screenshot of the Galaxy Gaze home page." height=50% width=50% />
+
+
+* Entity relationship diagram:
+
+<img src="/galaxy-gaze-erd.png" alt="A screenshot of the Galaxy Gaze home page." height=50% width=50% />
+
 
 ### In development
 * Viewing conditions preferences
