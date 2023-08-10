@@ -1,4 +1,4 @@
-# GalazyGaze _(front end)_
+# GalazyGaze _(back end)_
 
 <img src="/Galaxy-gaze-landing.png" alt="A screenshot of the Galaxy Gaze home page." height=50% width=50% />
 
